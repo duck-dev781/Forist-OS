@@ -15,7 +15,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-22.04
-    timeout-minutes: 45
+    timeout-minutes: 120
     steps:
       - name: Check out Forist OS
         uses: actions/checkout@v4
@@ -25,6 +25,12 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y build-essential bc bison flex libssl-dev libncurses-dev \
             wget cpio unzip rsync file xz-utils grub-pc-bin grub-common parted e2fsprogs
+
+      - name: Cache Buildroot downloads
+        uses: actions/cache@v4
+        with:
+          path: buildroot-2025.02.2/dl
+          key: buildroot-dl-${{ runner.os }}-2025.02.2
 
       - name: Build minimal 32-bit Linux with Buildroot
         shell: bash
