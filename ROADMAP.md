@@ -9,10 +9,13 @@ This roadmap is aspirational. Items are not complete unless explicitly marked do
 - [ ] Agree on supported upstream base and release policy
 
 ## Milestone 1 — Desktop prototype
-- [ ] Implement launcher, taskbar/dock, settings shell, and wallpaper
-- [ ] Establish design tokens, accessibility, and keyboard navigation
-- [ ] Prototype local user profiles and session boundaries
-- [ ] Measure startup time, idle RAM, and disk footprint
+- [x] Implement first browser-based launcher, dock, quick settings, clock, and wallpaper shell
+- [x] Add responsive styling and keyboard dismissal/search shortcuts
+- [x] Add basic demo app windows and prototype calculator
+- [ ] Establish design tokens, accessibility, and keyboard navigation review
+- [ ] Prototype real local user profiles and session boundaries
+- [ ] Measure startup time, idle RAM, and disk footprint on target hardware
+- [ ] Integrate shell with real OS services and window management
 
 ## Milestone 2 — Bootable x86-64 development image
 - [ ] Select a maintainable ChromiumOS-derived or Linux-based upstream
