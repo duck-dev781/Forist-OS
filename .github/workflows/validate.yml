@@ -1,0 +1,41 @@
+name: Validate project files
+
+on:
+  push:
+    branches: [main, "project/**"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Validate required project files
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s README.md
+          test -s LICENSE
+          test -s ROADMAP.md
+          test -s CONTRIBUTING.md
+          test -s docs/ARCHITECTURE.md
+          test -s docs/SECURITY.md
+          test -s docs/HARDWARE.md
+          test -s docs/ACCOUNTS-AND-APPS.md
+          test -s assets/forist-logo.svg
+          test -s assets/forist-wallpaper.svg
+          echo "Required Forist OS project files are present."
+      - name: Validate SVG XML
+        shell: bash
+        run: |
+          python - <<'PY'
+          import xml.etree.ElementTree as ET
+          for path in ("assets/forist-logo.svg", "assets/forist-wallpaper.svg"):
+              ET.parse(path)
+              print(f"Valid SVG XML: {path}")
+          PY
