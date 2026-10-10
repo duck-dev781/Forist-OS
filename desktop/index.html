@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102a35">
+  <meta name="description" content="Forist OS desktop shell concept: a forest-inspired desktop, app launcher, and dock.">
+  <title>Forist OS — Desktop Preview</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="desktop" id="desktop">
+    <div class="wallpaper-shade" aria-hidden="true"></div>
+    <header class="topbar">
+      <div class="brand">
+        <img src="../assets/forist-logo.svg" alt="" class="brand-mark">
+        <span>Forist</span>
+      </div>
+      <div class="topbar-center" id="workspace-label">Workspace 1</div>
+      <div class="system-tray">
+        <button class="tray-button" id="wifi-button" aria-label="Network status" title="Network status"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9a15 15 0 0 1 18 0M6.5 12.5a10 10 0 0 1 11 0M10 16a4.5 4.5 0 0 1 4 0M12 20h.01"/></svg></button>
+        <button class="tray-button" id="volume-button" aria-label="Sound settings" title="Sound settings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6l-5 4H4Zm12-2a6 6 0 0 1 0 8m2-11a10 10 0 0 1 0 14"/></svg></button>
+        <button class="clock-button" id="clock-button" aria-label="Open quick settings"><span id="date-label">Sat, Oct 10</span><strong id="time-label">7:30 PM</strong><span class="avatar">F</span></button>
+      </div>
+    </header>
+
+    <section class="desktop-shortcuts" aria-label="Desktop shortcuts">
+      <button class="shortcut" data-app="files"><span class="shortcut-icon folder-icon">▰</span><span>My files</span></button>
+      <button class="shortcut" data-app="browser"><span class="shortcut-icon browser-icon"><span></span></span><span>Chromium</span></button>
+      <button class="shortcut" data-app="settings"><span class="shortcut-icon settings-icon">⚙</span><span>Settings</span></button>
+    </section>
+
+    <section class="launcher" id="launcher" aria-label="Application launcher" hidden>
+      <div class="launcher-search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg>
+        <input id="app-search" type="search" placeholder="Search your apps, files, and more…" autocomplete="off" aria-label="Search apps">
+        <kbd>Esc</kbd>
+      </div>
+      <div class="launcher-heading"><div><p class="eyebrow">YOUR WORKSPACE</p><h1>Good to see you.</h1></div><span class="profile-pill"><span class="profile-dot">F</span> Local profile</span></div>
+      <div class="section-label"><span>Favorites</span><button id="all-apps-button" class="text-button">All apps <span aria-hidden="true">›</span></button></div>
+      <div class="app-grid" id="app-grid">
+        <button class="app-tile" data-app="settings" data-name="Settings"><span class="app-icon icon-settings">⚙</span><span>Settings</span></button>
+        <button class="app-tile" data-app="calculator" data-name="Calculator"><span class="app-icon icon-calc">＋</span><span>Calculator</span></button>
+        <button class="app-tile" data-app="browser" data-name="Chromium"><span class="app-icon icon-browser"><span></span></span><span>Chromium</span></button>
+        <button class="app-tile" data-app="android" data-name="Android apps"><span class="app-icon icon-android">●</span><span>Android apps</span></button>
+        <button class="app-tile" data-app="play" data-name="Play Store"><span class="app-icon icon-play">▶</span><span>Play Store</span></button>
+        <button class="app-tile" data-app="files" data-name="Files"><span class="app-icon icon-files">▰</span><span>Files</span></button>
+        <button class="app-tile" data-app="terminal" data-name="Terminal"><span class="app-icon icon-terminal">›_</span><span>Terminal</span></button>
+        <button class="app-tile" data-app="gallery" data-name="Gallery"><span class="app-icon icon-gallery">▧</span><span>Gallery</span></button>
+        <button class="app-tile" data-app="music" data-name="Music"><span class="app-icon icon-music">♫</span><span>Music</span></button>
+        <button class="app-tile" data-app="notes" data-name="Notes"><span class="app-icon icon-notes">✎</span><span>Notes</span></button>
+        <button class="app-tile" data-app="linux" data-name="Linux apps"><span class="app-icon icon-linux">⌘</span><span>Linux apps</span></button>
+        <button class="app-tile" data-app="help" data-name="Get help"><span class="app-icon icon-help">?</span><span>Get help</span></button>
+      </div>
+      <div class="launcher-footer"><span><span class="online-dot"></span> Forist OS · Desktop concept</span><span>Local session <span aria-hidden="true">·</span> <button id="lock-button" class="text-button">Lock screen</button></span></div>
+    </section>
+
+    <section class="quick-settings" id="quick-settings" hidden aria-label="Quick settings">
+      <div class="quick-header"><div><p class="eyebrow">FORIST CONTROL</p><h2>Quick settings</h2></div><button class="close-button" data-close="quick-settings" aria-label="Close quick settings">×</button></div>
+      <div class="toggle-grid">
+        <button class="setting-toggle active" data-toggle="wifi"><span>⌁</span><strong>Wi-Fi</strong><small>Connected (demo)</small></button>
+        <button class="setting-toggle active" data-toggle="bluetooth"><span>ᛒ</span><strong>Bluetooth</strong><small>On (demo)</small></button>
+        <button class="setting-toggle" data-toggle="night"><span>☾</span><strong>Night light</strong><small>Reduce blue light</small></button>
+        <button class="setting-toggle" data-toggle="focus"><span>◉</span><strong>Focus mode</strong><small>Quiet workspace</small></button>
+      </div>
+      <div class="brightness-row"><span>☼</span><input aria-label="Brightness" type="range" min="25" max="100" value="85" id="brightness-slider"><span id="brightness-value">85%</span></div>
+      <p class="panel-note">These controls are visual prototype interactions. They do not change your computer's real hardware settings.</p>
+    </section>
+
+    <section class="app-window" id="app-window" hidden role="dialog" aria-modal="false" aria-labelledby="window-title">
+      <div class="window-titlebar"><div class="window-app-mark" id="window-mark">F</div><strong id="window-title">Welcome to Forist</strong><div class="window-controls"><button id="minimize-window" aria-label="Minimize window">−</button><button id="maximize-window" aria-label="Toggle maximize">□</button><button id="close-window" aria-label="Close window">×</button></div></div>
+      <div class="window-content" id="window-content"></div>
+    </section>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <nav class="dock" aria-label="Application dock">
+      <button class="dock-launcher" id="launcher-button" aria-label="Open app launcher" title="Forist launcher"><img src="../assets/forist-logo.svg" alt=""></button>
+      <span class="dock-separator"></span>
+      <button class="dock-app" data-app="browser" aria-label="Chromium" title="Chromium"><span class="dock-chrome"><i></i></span></button>
+      <button class="dock-app" data-app="files" aria-label="Files" title="Files"><span class="dock-folder">▰</span></button>
+      <button class="dock-app" data-app="play" aria-label="Play Store" title="Play Store"><span class="dock-play">▶</span></button>
+      <button class="dock-app" data-app="android" aria-label="Android apps" title="Android apps"><span class="dock-android">●</span></button>
+      <button class="dock-app" data-app="terminal" aria-label="Terminal" title="Terminal"><span class="dock-term">›_</span></button>
+      <button class="dock-app" data-app="settings" aria-label="Settings" title="Settings"><span class="dock-gear">⚙</span></button>
+      <span class="dock-separator"></span>
+      <button class="dock-app dock-profile" id="profile-button" aria-label="Local profile" title="Local profile"><span>F</span></button>
+    </nav>
+
+    <section class="lock-screen" id="lock-screen" hidden>
+      <img src="../assets/forist-logo.svg" alt="" class="lock-logo">
+      <p class="eyebrow">FORIST OS</p><h2>Your forest. Your workspace.</h2><p id="lock-time">7:30 PM</p>
+      <button id="unlock-button" class="primary-button">Return to desktop</button>
+      <small>Prototype lock screen — no password protection is implemented.</small>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
