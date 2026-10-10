@@ -1,0 +1,114 @@
+name: Build Forist v86 test image
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/build-v86-image.yml"
+      - "v86/**"
+      - "desktop/**"
+    branches: ["main", "project/**"]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 45
+    steps:
+      - name: Check out Forist OS
+        uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential bc bison flex libssl-dev libncurses-dev \
+            wget cpio unzip rsync file xz-utils grub-pc-bin grub-common parted e2fsprogs
+
+      - name: Build minimal 32-bit Linux with Buildroot
+        shell: bash
+        run: |
+          set -euxo pipefail
+          wget -q https://buildroot.org/downloads/buildroot-2025.02.2.tar.xz
+          tar -xf buildroot-2025.02.2.tar.xz
+          cd buildroot-2025.02.2
+          make qemu_i386_defconfig
+          make -j2
+          test -s output/images/bzImage
+          test -s output/images/rootfs.ext2
+          mkdir -p ../forist-image
+          cp output/images/bzImage ../forist-image/vmlinuz
+          cp output/images/rootfs.ext2 ../forist-image/rootfs.ext2
+          cd ..
+
+      - name: Create bootable raw disk image
+        shell: bash
+        run: |
+          set -euxo pipefail
+          IMAGE="$PWD/forist-v86-test.img"
+          truncate -s 192M "$IMAGE"
+          parted -s "$IMAGE" mklabel msdos
+          parted -s "$IMAGE" mkpart primary ext2 1MiB 100%
+          parted -s "$IMAGE" set 1 boot on
+          LOOP=$(sudo losetup --find --show --partscan "$IMAGE")
+          cleanup() {
+            sudo umount /mnt/forist-root 2>/dev/null || true
+            sudo umount /mnt/forist-source 2>/dev/null || true
+            sudo losetup -d "$LOOP" 2>/dev/null || true
+          }
+          trap cleanup EXIT
+          for i in $(seq 1 20); do
+            test -b "${LOOP}p1" && break
+            sleep 1
+          done
+          sudo mkfs.ext2 -F "${LOOP}p1"
+          sudo mkdir -p /mnt/forist-root /mnt/forist-source
+          sudo mount "${LOOP}p1" /mnt/forist-root
+          sudo mount -o loop,ro forist-image/rootfs.ext2 /mnt/forist-source
+          sudo cp -a /mnt/forist-source/. /mnt/forist-root/
+          sudo mkdir -p /mnt/forist-root/boot/grub
+          sudo cp forist-image/vmlinuz /mnt/forist-root/boot/vmlinuz
+          sudo tee /mnt/forist-root/boot/grub/grub.cfg >/dev/null <<'GRUB'
+          set timeout=0
+          set default=0
+          terminal_input console
+          terminal_output console
+          serial --unit=0 --speed=115200
+          terminal_input console serial
+          terminal_output console serial
+          menuentry "Forist OS v86 test (minimal Linux)" {
+              linux /boot/vmlinuz root=/dev/sda1 rootwait rw console=tty0 console=ttyS0,115200
+          }
+          GRUB
+          sudo grub-install --target=i386-pc --boot-directory=/mnt/forist-root/boot --recheck "$LOOP"
+          sudo sync
+          sudo umount /mnt/forist-source
+          sudo umount /mnt/forist-root
+          sudo losetup -d "$LOOP"
+          trap - EXIT
+          ls -lh "$IMAGE"
+          file "$IMAGE"
+
+      - name: Package image and checksum
+        run: |
+          mkdir -p dist
+          cp forist-v86-test.img dist/
+          sha256sum dist/forist-v86-test.img > dist/SHA256SUMS.txt
+          cat > dist/README.txt <<'EOF'
+          Forist OS v86 test image
+          ========================
+          Experimental boot test for 32-bit x86 PC emulation.
+          This image contains a minimal Buildroot Linux system, not the full
+          Forist desktop, Chromium, Android runtime, or Google Play.
+          Download this image and load it using desktop/v86-test.html.
+          The first build is experimental; verify boot compatibility.
+          EOF
+
+      - name: Upload v86 image artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: forist-v86-test-image
+          path: dist/
+          if-no-files-found: error
+          retention-days: 14
