@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Forist OS logo</title>
+  <desc id="desc">A stylized evergreen tree in front of layered mountain peaks, above a turquoise lake, on a deep blue background.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#102d42"/><stop offset="1" stop-color="#071a2b"/></linearGradient>
+    <linearGradient id="lake" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#26b9b0"/><stop offset="1" stop-color="#087a83"/></linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="100" fill="url(#sky)"/>
+  <circle cx="365" cy="126" r="43" fill="#d9f3ee" opacity=".82"/>
+  <path d="M35 300 164 119l91 122 74-89 148 148v72H35Z" fill="#9bbbc3" opacity=".75"/>
+  <path d="m164 119 37 50-32-9-25 26-20-4Z" fill="#e9f5f4"/>
+  <path d="m329 152 30 38-27-7-19 21-18-4Z" fill="#e9f5f4"/>
+  <path d="M35 312 141 208l75 79 63-63 198 105v44H35Z" fill="#245d67"/>
+  <path d="M35 340h442v83q-90-20-160 0t-142 0q-68-16-140 1Z" fill="url(#lake)"/>
+  <path d="M75 365h155m-122 20h210m-153 20h180" stroke="#b5f2e8" stroke-width="5" stroke-linecap="round" opacity=".6"/>
+  <g fill="#0c4b47" stroke="#c1f0dc" stroke-linejoin="round" stroke-width="4">
+    <path d="m113 310 48-86 48 86h-27l35 49h-112l35-49Z" fill="#176e5d"/>
+    <path d="M161 351v37" fill="none" stroke="#d8c7a0" stroke-width="9" stroke-linecap="round"/>
+  </g>
+  <path d="M256 447h190" stroke="#d1f5ef" stroke-width="4" stroke-linecap="round" opacity=".75"/>
+</svg>

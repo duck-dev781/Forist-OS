@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc">
+<title id="title">Forist OS — Misty Mountain Lake</title>
+<desc id="desc">A calm, stylized alpine scene with layered misty mountains, evergreen forests and a reflective turquoise lake, designed as a desktop wallpaper.</desc>
+<defs>
+ <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#b7d1dc"/><stop offset=".53" stop-color="#6d9eaa"/><stop offset="1" stop-color="#245b68"/></linearGradient>
+ <linearGradient id="water" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#168e91"/><stop offset="1" stop-color="#06394b"/></linearGradient>
+ <linearGradient id="mist" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#e9f3f3" stop-opacity=".05"/><stop offset=".5" stop-color="#f5fbfb" stop-opacity=".72"/><stop offset="1" stop-color="#e9f3f3" stop-opacity=".08"/></linearGradient>
+ <filter id="soft"><feGaussianBlur stdDeviation="24"/></filter>
+ <g id="pine"><path d="M0 0-25 44h15L-34 63h22v28h24V63h22L15 44h15Z" fill="#123e38"/><path d="M0 4-19 39H-7L-26 58H-8v24H8V58h18L7 39h12Z" fill="#2b6651"/></g>
+</defs>
+<rect width="1920" height="1080" fill="url(#sky)"/>
+<circle cx="1450" cy="170" r="92" fill="#f0f5ed" opacity=".62" filter="url(#soft)"/>
+<path d="M0 400 200 250 365 330 570 112 770 322 980 160 1170 350 1380 130 1600 330 1770 205 1920 300V650H0Z" fill="#8eabb5" opacity=".66"/>
+<path d="m570 112 84 117-77-25-49 39-49-8Z M1380 130l70 110-64-22-45 34-35-7Z" fill="#eef4f0" opacity=".85"/>
+<path d="M0 465 220 350 390 422 600 282 785 430 1000 302 1180 447 1400 300 1600 438 1800 322 1920 400V690H0Z" fill="#517d80" opacity=".9"/>
+<path d="M0 510 180 410 340 493 520 380 690 498 880 396 1080 506 1260 390 1450 505 1660 397 1850 492 1920 455V690H0Z" fill="#315e59"/>
+<path d="M0 520Q220 485 410 535T820 525T1250 520T1640 535T1920 515V1080H0Z" fill="url(#water)"/>
+<path d="M0 530Q200 514 410 541T820 534T1250 538T1640 540T1920 528" fill="none" stroke="#d2e8df" stroke-width="7" opacity=".68"/>
+<g opacity=".95">
+ <use href="#pine" transform="translate(50 485) scale(2.4)"/><use href="#pine" transform="translate(135 485) scale(2.8)"/><use href="#pine" transform="translate(230 495) scale(2.1)"/><use href="#pine" transform="translate(320 488) scale(2.5)"/>
+ <use href="#pine" transform="translate(440 498) scale(2.2)"/><use href="#pine" transform="translate(550 493) scale(2.9)"/><use href="#pine" transform="translate(680 495) scale(2.3)"/><use href="#pine" transform="translate(790 500) scale(2.7)"/>
+ <use href="#pine" transform="translate(940 500) scale(2.2)"/><use href="#pine" transform="translate(1050 492) scale(2.8)"/><use href="#pine" transform="translate(1180 500) scale(2.3)"/><use href="#pine" transform="translate(1300 490) scale(2.9)"/>
+ <use href="#pine" transform="translate(1430 495) scale(2.3)"/><use href="#pine" transform="translate(1550 488) scale(2.7)"/><use href="#pine" transform="translate(1680 498) scale(2.3)"/><use href="#pine" transform="translate(1790 490) scale(2.8)"/><use href="#pine" transform="translate(1890 495) scale(2.5)"/>
+</g>
+<g opacity=".24" transform="translate(0 1080) scale(1 -1)">
+ <path d="M0 500 200 420 360 490 560 390 760 495 980 400 1180 500 1390 395 1590 495 1790 415 1920 470V600H0Z" fill="#9de1d4"/>
+</g>
+<g stroke="#b7eee4" stroke-linecap="round" opacity=".32">
+ <path d="M120 650h390m-310 35h560m-220 44h350m340-83h290m-120 48h410m-980 100h540m-260 65h390m-800-8h160m650 93h300" stroke-width="5"/>
+ <path d="M0 585h1920" stroke-width="3" opacity=".5"/>
+</g>
+<path d="M0 0H1920V1080H0Z" fill="url(#mist)" opacity=".12"/>
+<g fill="#f1f7f5" opacity=".44" filter="url(#soft)">
+ <ellipse cx="360" cy="300" rx="380" ry="70"/><ellipse cx="1010" cy="275" rx="460" ry="80"/><ellipse cx="1530" cy="360" rx="500" ry="80"/>
+</g>
+</svg>
