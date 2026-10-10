@@ -33,7 +33,7 @@ jobs:
           wget -q https://buildroot.org/downloads/buildroot-2025.02.2.tar.xz
           tar -xf buildroot-2025.02.2.tar.xz
           cd buildroot-2025.02.2
-          make qemu_i386_defconfig
+          make qemu_x86_defconfig
           make -j2
           test -s output/images/bzImage
           test -s output/images/rootfs.ext2
