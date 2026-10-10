@@ -19,16 +19,14 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test -s README.md
-          test -s LICENSE
-          test -s ROADMAP.md
-          test -s CONTRIBUTING.md
-          test -s docs/ARCHITECTURE.md
-          test -s docs/SECURITY.md
-          test -s docs/HARDWARE.md
-          test -s docs/ACCOUNTS-AND-APPS.md
-          test -s assets/forist-logo.svg
-          test -s assets/forist-wallpaper.svg
+          for path in \
+            README.md LICENSE ROADMAP.md CONTRIBUTING.md \
+            docs/ARCHITECTURE.md docs/SECURITY.md docs/HARDWARE.md \
+            docs/ACCOUNTS-AND-APPS.md docs/DESKTOP-SHELL.md \
+            assets/forist-logo.svg assets/forist-wallpaper.svg \
+            desktop/index.html desktop/styles.css desktop/app.js; do
+            test -s "$path"
+          done
           echo "Required Forist OS project files are present."
       - name: Validate SVG XML
         shell: bash
@@ -39,3 +37,6 @@ jobs:
               ET.parse(path)
               print(f"Valid SVG XML: {path}")
           PY
+      - name: Check desktop shell script syntax
+        shell: bash
+        run: node --check desktop/app.js
